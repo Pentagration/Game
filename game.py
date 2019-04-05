@@ -10,6 +10,7 @@ def setup():
   location(turtle,"quay")
   help()
   intro()
+  return turtle
 #end setup
 
 def square(turtle,x,y):
@@ -79,7 +80,7 @@ def location(turtle,name):
 
 def help():  
   print "At each point in the game you will be told which directions"
-  print "you can go.  You'll be able to go:"
+  print "you can go.  You MAY be able to go:"
   print "(R)ight,(L)eft,(U)p,(D)own,(E)xit, or ask for (H)elp. \n"
 
 def intro():  
@@ -95,10 +96,10 @@ def intro():
 ##################################################
 
 
+
 def choice(valid): 
 #Evaluate the players entry for validity
   #Add the exit and help choices to the list
-  valid = ['u','d','r','l']
   valid.append('e')
   valid.append('h')
   
@@ -116,16 +117,41 @@ def choice(valid):
       break
     elif choice == 'h':
       help()
-      break
+      choice = requestString("SEE THE HELP MESSAGE: \n What choice do you make?: ")
     elif choice not in valid:
       choice = requestString("THAT WAS NOT A VALID CHOICE: \n What choice do you make?: ")
     else:
       return choice
 #end choice
 
- 
+def quay(turtle):
+  #remove the options that are NOT valid for your room
+  valid = ['u']
+  
+  #Add the story about your room
+  print "You are standing on the quay at the base on the"
+  print "gangplank ready to board the talbot along with 120"
+  print "passengers and 30 crew.  150 people in all.\n"
+  print "Are they all as pure as their puritan credentials?\n"
+  
+  print "(U)P: You're only at the beginning"
+  print "your only choice is to board the Talbot."
+  print "(E)xit: or you can quit.\n"
 
+  #see what they decided to do
+  result = choice(valid)
+  result
+  
+  #based on the choice return where does the player move to?
+  #CALL LOCATION FROM SETUP
+  if result == 'u':
+    name = "deck"
+    location(turtle,name)
+    
+    return name
+#end quay              
+ 
 def playGame():
-  setup()
-  valid = ['u','d','r','l']    
-  choice(valid)  
+  turtle = setup()    
+  name = quay(turtle)
+  
