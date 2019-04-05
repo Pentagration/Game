@@ -7,6 +7,7 @@ def setup():
   boat = makeWorld(500,500)
   turtle = makeTurtle(boat)
   drawBoat(turtle,boat)
+  turnRight(turtle)
   location(turtle,"quay")
   help()
   intro()
@@ -147,11 +148,50 @@ def quay(turtle):
   if result == 'u':
     name = "deck"
     location(turtle,name)
-    
     return name
 #end quay              
+
+def deck(turtle):
+  #remove the options that are NOT valid for your room
+  valid = ['d','r','l']
+  
+  #Add the story about your room
+  print "You are on the main deck of the Talbot."
+  print "Welcome aboard!!!\n"
+  
+  print "(R)IGHT: Aft castle"
+  print "(L)EFT: Forecastle"
+  print "(D)OWN: Gun Deck"
+  
+  #see what they decided to do
+  result = choice(valid)
+  print result
+  
+  #based on the choice return where does the player move to?
+  #CALL LOCATION FROM SETUP
+  if result == 'r':
+    name = "aftCastle"
+    location(turtle,name)
+    return name
+  elif result == 'l':
+    name = "foreCastle"
+    location(turtle,name)
+    return name
+  elif result == 'd':
+    name = "gunDeck"
+    location(turtle,name)
+    return name
+#end room 
  
+  
+    
 def playGame():
   turtle = setup()    
   name = quay(turtle)
+  
+  #NEED A WHILE LOOP HERE THAT CAN MOVE
+  #FROM ROOM TO ROOM
+  #KEEP PROMPTING WITH NEW ROOM'S INFO
+  name = deck(turtle)
+  
   
