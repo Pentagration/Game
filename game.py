@@ -83,7 +83,7 @@ def location(turtle,name):
 def help():  
   print "At each point in the game you will be told which directions"
   print "you can go.  You MAY be able to go:"
-  print "(R)ight,(L)eft,(U)p,(D)own,(B)ack, (E)xit, or ask for (H)elp. \n"
+  print "(R)ight,(L)eft,(U)p,(D)own,(B)ack,(E)xit,or ask for (H)elp. \n"
 
 def intro():  
   print "Let us pretend this is the year 1630, and that we have" 
@@ -184,9 +184,14 @@ def deck(turtle):
 #end room 
    
 def playGame():
+#Our game about the Galleon Talbot
+  #Show the welcome messages and put the turtle
+  #at the start position on the quay
   turtle = setup()    
   name = quay(turtle)
   
+  #Depending on the user's choice display the 
+  #message for the next room/location
   if name == "quay":
     name = quay(turtle)
   elif name == "deck":
