@@ -1,6 +1,6 @@
 def room():
   #remove the options that are NOT valid for your room
-  valid = ['u','d','r','l']
+  valid = ['u','d','r','l','b']
   
   #Add the story about your room
   print "Your room's story"
@@ -9,10 +9,10 @@ def room():
   print "(L)EFT: "
   print "(U)P: "
   print "(D)OWN: "
+  print "(B)ACK: "
   
   #see what they decided to do
   result = choice(valid)
-  print result
   
   #based on the choice return where does the player move to?
   #CALL LOCATION FROM SETUP
@@ -30,6 +30,10 @@ def room():
     return name
   elif result == 'd':
     name =
+    location(turtle,name)
+    return name
+  elif result == 'b':
+    name = 
     location(turtle,name)
     return name
 #end room                                                                     
