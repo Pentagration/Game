@@ -9,6 +9,7 @@ def setup():
   drawBoat(turtle,boat)
   turnRight(turtle)
   room=setRoom("quay")
+  penUp(turtle)
   moveTo(turtle,room['x'],room['y'])
   help()
   intro()
@@ -175,9 +176,9 @@ def playGame():
   room = setRoom("quay")
   result=''
   while result != 'e':
-    room['call']													              	#call room function
-    result=choice(room)                                                             #stores a room name
+    room['call']                                #call room function
+    result=choice(room)                         #stores a room name
     if result != 'e':
-      room=setRoom(result)													        #set room to room in the direction that player chooses
+      room=setRoom(result)                      #set room to room in the direction that player chooses
       moveTo(turtle,room['x'],room['y'])
 
