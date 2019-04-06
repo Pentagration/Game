@@ -188,10 +188,15 @@ def deck(turtle):
 def playGame():
   turtle = setup()    
   name = quay(turtle)
+  print name
   
+  if name == "deck":
+    name = deck(turtle)
+  elif name == "quay":
+    name = quay(turtle)
   #NEED A WHILE LOOP HERE THAT CAN MOVE
   #FROM ROOM TO ROOM
   #KEEP PROMPTING WITH NEW ROOM'S INFO
-  name = deck(turtle)
+  #name = deck(turtle)
   
   
