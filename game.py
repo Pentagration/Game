@@ -45,6 +45,7 @@ def location(turtle,name):
   penUp(turtle)                  
   
   #List of locations on the boat 
+  #moves the turtle to the center of the square
   if name == "quay":
     moveTo(turtle,115,250)
   elif name == "deck":
@@ -82,7 +83,7 @@ def location(turtle,name):
 def help():  
   print "At each point in the game you will be told which directions"
   print "you can go.  You MAY be able to go:"
-  print "(R)ight,(L)eft,(U)p,(D)own,(E)xit, or ask for (H)elp. \n"
+  print "(R)ight,(L)eft,(U)p,(D)own,(B)ack, (E)xit, or ask for (H)elp. \n"
 
 def intro():  
   print "Let us pretend this is the year 1630, and that we have" 
@@ -165,7 +166,6 @@ def deck(turtle):
   
   #see what they decided to do
   result = choice(valid)
-  print result
   
   #based on the choice return where does the player move to?
   #CALL LOCATION FROM SETUP
@@ -182,21 +182,41 @@ def deck(turtle):
     location(turtle,name)
     return name
 #end room 
- 
-  
-    
+   
 def playGame():
   turtle = setup()    
   name = quay(turtle)
-  print name
   
-  if name == "deck":
-    name = deck(turtle)
-  elif name == "quay":
+  if name == "quay":
     name = quay(turtle)
-  #NEED A WHILE LOOP HERE THAT CAN MOVE
-  #FROM ROOM TO ROOM
-  #KEEP PROMPTING WITH NEW ROOM'S INFO
-  #name = deck(turtle)
-  
+  elif name == "deck":
+    name = deck(turtle)
+  elif name == "foreCastle":
+    name = foreCastle(turtle)
+  elif name == "aftCastle":
+    name = aftCastle(turtle)
+  elif name == "gunDeck":
+    name = gunDeck(turtle)
+  elif name == "crew":
+    name = crew(turtle)
+  elif name == "gunPowder":
+    name = gunPowder(turtle)
+  elif name == "tweenDeck":
+    name = tweenDeck(turtle)
+  elif name == "bunk":
+    name = bunk(turtle)
+  elif name == "passengers":
+    name = passengers(turtle)
+  elif name == "hold":
+    name = hold(turtle)
+  elif name == "food":
+    name = food(turtle)
+  elif name == "livestock":
+    name = livestock(turtle)
+  elif name == "ballast":
+    name = ballast(turtle)
+  elif name == "rum":
+    name = rum(turtle)
+  elif name == "gold":
+    name = gold(turtle) 
   
