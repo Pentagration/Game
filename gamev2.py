@@ -170,6 +170,52 @@ def passengers():
   print "(L)EFT: Tween Deck\n"
 #end passengers
 
+def hold():
+  print "Hold\n"
+  
+  print "(D)OWN: Ballast"
+  print "(U)P: Tween Deck"
+  print "(L)EFT: Rum"
+  print "(R)RIGHT Gold\n"
+#end hold
+
+def food():
+  print "Food\n"
+  
+  print "(D)OWN: Rum"
+  print "(U)P: Bunk"
+  print "(R)IGHT: Hold\n"
+#end food
+
+def livestock():
+  print "Livestock\n"
+  
+  print "(D)OWN: Gold"
+  print "(U)P: Passengers"
+  print "(L)EFT: Hold\n"
+#end livestock
+
+def ballast():
+  print "Ballast\n"
+  
+  print "(U)P: Hold"
+  print "(L)EFT: Rum"
+  print "(R)IGHT: Gold\n"
+#end ballast
+
+def rum():
+  print "Rum\n"
+  
+  print "(U)P: Food"
+  print "(R)IGHT: Ballast\n"
+#end rum
+
+def gold():
+  print "Gold\n"
+  
+  print "(U)P: Livestock"
+  print "(L)EFT: Ballast\n"
+
 
 #######################################################################
 #############              END ROOMS              #####################
