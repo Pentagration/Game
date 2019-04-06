@@ -217,7 +217,69 @@ def foreCastle(turtle):
     location(turtle,name)
     return name
 #end foreCastle      
-   
+
+def aftCastle(turtle):
+  #remove the options that are NOT valid for your room
+  valid = ['r','l','b']
+  
+  #Add the story about your room
+  print "You are in the Aft Castle where the"
+  print "Captain and important passsengers stay."
+  print "You are not important.\n"
+  
+  print "(R)IGHT: First Mate"
+  print "(L)EFT: A wall"
+  print "(B)ACK: The Deck\n"
+  
+  #see what they decided to do
+  result = choice(valid)
+  
+  #based on the choice return where does the player move to?
+  #CALL LOCATION FROM SETUP
+  if result == 'r':
+    print "FIRST MATE: Says get below decks."
+    print "He pushes you back out the door. \n"
+    name = "deck"
+    location(turtle,name)
+    return name
+  elif result == 'l':
+    print "You're looking at a wall.  You decide to go back"
+    print "to the deck.\n"
+    name = "deck"
+    location(turtle,name)
+    return name
+  elif result == 'b':
+    name = "deck"
+    location(turtle,name)
+    return name
+#end aftCastle
+
+def gunDeck(turtle):
+  #remove the options that are NOT valid for your room
+  valid = ['u','d']
+  
+  #Add the story about your room
+  print "You decended a ladder to the Gun Deck."
+  print "Passengers aren't allowed here.\n"
+  
+  print "(U)P: Go back to the deck."
+  print "(D)OWN: Go down a ladder to the tween deck.\n"
+  
+  #see what they decided to do
+  result = choice(valid)
+  
+  #based on the choice return where does the player move to?
+  #CALL LOCATION FROM SETUP
+  if result == 'u':
+    name = "deck"
+    location(turtle,name)
+    return name
+  elif result == 'd':
+    name = "tweenDeck"
+    location(turtle,name)
+    return name
+#end gunDeck                                                                    
+                                                                                                                                                      
 def playGame():
 #Our game about the Galleon Talbot
   #Show the welcome messages and put the turtle
