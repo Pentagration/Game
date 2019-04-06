@@ -104,7 +104,7 @@ def aftCastle():
   print "You are in the Aft Castle where the"
   print "Captain and important passsengers stay."
   print "You are not important.\n"
-  
+
   print "(D)OWN: The gunPowder"
   print "(L)EFT: The Deck"
 #end aftCastle
@@ -112,24 +112,24 @@ def aftCastle():
 def foreCastle():
   print "You are in the Forecastle where the Baker, Tanner,"
   print "and Sail Maker work.\n"
-  
+
   print "(D)OWN: The Crew"
   print "(R)IGHT: The Deck\n"
 #end foreCastle
 
 def gunDeck():
   print "You are on the Gun deck, where the Talbot's cannons are secured.\n"
-  
+
   print "(D)OWN: The Tween Deck"
   print "(U)P: Deck"
   print "(L)eft: The Crew"
   print "(R)ight: The Gun Powder\n"
 #end gunDeck
-  
+
 def crew():
   print "You are in the crew area.  What are you doing here? Passengers aren't"
   print "supposed to be on the Gun Deck.\n"
-  
+
   print "(D)OWN: Your bunk"
   print "(U)P: Fore Castle"
   print "(R)IGHT: Gun Deck\n"
@@ -138,7 +138,7 @@ def crew():
 def gunPowder():
   print "DANGER. You are in the gun powder area, it's very unstable."
   print "Even the slightest spark could blow up the Talbot.\n"
-  
+
   print "(D)OWN: Passengers"
   print "(U)P: Aft Castle"
   print "(L)EFT: Gun Deck\n"
@@ -147,7 +147,7 @@ def gunPowder():
 def tweenDeck():
   print "The Tween Deck is the passenger area. This is where your"
   print "fellow passengers and you bunk are.\n"
-  
+
   print "(D)OWN: Hold"
   print "(U)P: Gun Deck"
   print "(L)EFT: Bunk"
@@ -156,15 +156,15 @@ def tweenDeck():
 
 def bunk():
   print "Bunk\n"
-  
+
   print "(D)OWN: Food"
   print "(U)P: Crew"
   print "(R)IGHT: Tween Deck\n"
 #end bunk
-    
+
 def passengers():
   print "Passengers\n"
-  
+
   print "(D)OWN: Livestock"
   print "(U)P: Gun Powder"
   print "(L)EFT: Tween Deck\n"
@@ -172,7 +172,7 @@ def passengers():
 
 def hold():
   print "Hold\n"
-  
+
   print "(D)OWN: Ballast"
   print "(U)P: Tween Deck"
   print "(L)EFT: Rum"
@@ -181,7 +181,7 @@ def hold():
 
 def food():
   print "Food\n"
-  
+
   print "(D)OWN: Rum"
   print "(U)P: Bunk"
   print "(R)IGHT: Hold\n"
@@ -189,7 +189,7 @@ def food():
 
 def livestock():
   print "Livestock\n"
-  
+
   print "(D)OWN: Gold"
   print "(U)P: Passengers"
   print "(L)EFT: Hold\n"
@@ -197,7 +197,7 @@ def livestock():
 
 def ballast():
   print "Ballast\n"
-  
+
   print "(U)P: Hold"
   print "(L)EFT: Rum"
   print "(R)IGHT: Gold\n"
@@ -205,14 +205,14 @@ def ballast():
 
 def rum():
   print "Rum\n"
-  
+
   print "(U)P: Food"
   print "(R)IGHT: Ballast\n"
 #end rum
 
 def gold():
   print "Gold\n"
-  
+
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
 
@@ -259,8 +259,9 @@ def setRoom(name):
 
 
 def playGame():
-  turtle = setup()
-  room = setRoom("quay")
+#THE FUNCTION TO INITIATE THE GAME
+  turtle = setup()                             #display the welcome, opening story, and help
+  room = setRoom("quay")                       #set the starting location
   result=''
   while result != 'e':
     room['call']                                #call room function
@@ -268,4 +269,3 @@ def playGame():
     if result != 'e':
       room=setRoom(result)                      #set room to room in the direction that player chooses
       moveTo(turtle,room['x'],room['y'])
-
