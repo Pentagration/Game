@@ -81,9 +81,6 @@ def choice(valid):
 #############              ROOMS                  #####################
 #######################################################################
 def quay():
-  #remove the options that are NOT valid for your room
-
-  #Add the story about your room
   print "You are standing on the quay at the base on the"
   print "gangplank ready to board the talbot along with 120"
   print "passengers and 30 crew.  150 people in all.\n"
@@ -95,18 +92,13 @@ def quay():
 #end quay
 
 def deck():
-
-  #Add the story about your room
   print "You are on the main deck of the Talbot."
   print "Welcome aboard!!!\n"
 
   print "(R)IGHT: Aft castle"
   print "(L)EFT: Forecastle"
   print "(D)OWN: Gun Deck"
-
-  #based on the choice return where does the player move to?
-  #CALL LOCATION FROM SETUP
-#end room
+#end deck
 
 def aftCastle():
   print "You are in the Aft Castle where the"
@@ -115,6 +107,7 @@ def aftCastle():
   
   print "(D)OWN: The gunPowder"
   print "(L)EFT: The Deck"
+#end aftCastle
 
 def foreCastle():
   print "You are in the Forecastle where the Baker, Tanner,"
@@ -122,6 +115,7 @@ def foreCastle():
   
   print "(D)OWN: The Crew"
   print "(R)IGHT: The Deck\n"
+#end foreCastle
 
 def gunDeck():
   print "You are on the Gun deck, where the Talbot's cannons are secured.\n"
@@ -129,7 +123,53 @@ def gunDeck():
   print "(D)OWN: The Tween Deck"
   print "(U)P: Deck"
   print "(L)eft: The Crew"
-  print "(R)ight: The Gun Powder"
+  print "(R)ight: The Gun Powder\n"
+#end gunDeck
+  
+def crew():
+  print "You are in the crew area.  What are you doing here? Passengers aren't"
+  print "supposed to be on the Gun Deck.\n"
+  
+  print "(D)OWN: Your bunk"
+  print "(U)P: Fore Castle"
+  print "(R)IGHT: Gun Deck\n"
+#end crew
+
+def gunPowder():
+  print "DANGER. You are in the gun powder area, it's very unstable."
+  print "Even the slightest spark could blow up the Talbot.\n"
+  
+  print "(D)OWN: Passengers"
+  print "(U)P: Aft Castle"
+  print "(L)EFT: Gun Deck\n"
+#end gunPowder
+
+def tweenDeck():
+  print "The Tween Deck is the passenger area. This is where your"
+  print "fellow passengers and you bunk are.\n"
+  
+  print "(D)OWN: Hold"
+  print "(U)P: Gun Deck"
+  print "(L)EFT: Bunk"
+  print "(R)IGHT: Passengers\n"
+#end tweenDeck
+
+def bunk():
+  print "Bunk\n"
+  
+  print "(D)OWN: Food"
+  print "(U)P: Crew"
+  print "(R)IGHT: Tween Deck\n"
+#end bunk
+    
+def passengers():
+  print "Passengers\n"
+  
+  print "(D)OWN: Livestock"
+  print "(U)P: Gun Powder"
+  print "(L)EFT: Tween Deck\n"
+#end passengers
+
 
 #######################################################################
 #############              END ROOMS              #####################
