@@ -301,10 +301,10 @@ def playGame():
       name = aftCastle(turtle)
     elif name == "gunDeck":
       name = gunDeck(turtle)
-    elif name == "crew":
-      name = crew(turtle)
-    elif name == "gunPowder":
-      name = gunPowder(turtle)
+    #elif name == "crew":
+     # name = crew(turtle)
+    #elif name == "gunPowder":
+     # name = gunPowder(turtle)
     elif name == "tweenDeck":
       name = tweenDeck(turtle)
     elif name == "bunk":
