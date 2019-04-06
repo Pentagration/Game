@@ -162,7 +162,7 @@ def deck(turtle):
   
   print "(R)IGHT: Aft castle"
   print "(L)EFT: Forecastle"
-  print "(D)OWN: Gun Deck"
+  print "(D)OWN: Gun Deck\n"
   
   #see what they decided to do
   result = choice(valid)
@@ -181,7 +181,42 @@ def deck(turtle):
     name = "gunDeck"
     location(turtle,name)
     return name
-#end room 
+#end deck
+
+def foreCastle(turtle):
+  #remove the options that are NOT valid for your room
+  valid = ['r','l','b']
+  
+  #Add the story about your room
+  print "You are in the Forecastle where the Baker, Tanner,"
+  print "and Sail Maker work.\n"
+  
+  print "(R)IGHT: The Baker"
+  print "(L)EFT: The Tanner "
+  print "(B)ACK: The Deck\n"
+  
+  #see what they decided to do
+  result = choice(valid)
+  
+  #based on the choice return where does the player move to?
+  #CALL LOCATION FROM SETUP
+  if result == 'r':
+    print "BAKER SAYS: This is our area. Go back to the deck."
+    print "He pushes you back out the door. \n"
+    name = "deck"
+    location(turtle,name)
+    return name
+  elif result == 'l':
+    print "TANNER SAYS: This is our area. Go back to the deck."
+    print "He pushes you back out the door. \n"
+    name = "deck"
+    location(turtle,name)
+    return name
+  elif result == 'b':
+    name = "deck"
+    location(turtle,name)
+    return name
+#end foreCastle      
    
 def playGame():
 #Our game about the Galleon Talbot
@@ -192,36 +227,38 @@ def playGame():
   
   #Depending on the user's choice display the 
   #message for the next room/location
-  if name == "quay":
-    name = quay(turtle)
-  elif name == "deck":
-    name = deck(turtle)
-  elif name == "foreCastle":
-    name = foreCastle(turtle)
-  elif name == "aftCastle":
-    name = aftCastle(turtle)
-  elif name == "gunDeck":
-    name = gunDeck(turtle)
-  elif name == "crew":
-    name = crew(turtle)
-  elif name == "gunPowder":
-    name = gunPowder(turtle)
-  elif name == "tweenDeck":
-    name = tweenDeck(turtle)
-  elif name == "bunk":
-    name = bunk(turtle)
-  elif name == "passengers":
-    name = passengers(turtle)
-  elif name == "hold":
-    name = hold(turtle)
-  elif name == "food":
-    name = food(turtle)
-  elif name == "livestock":
-    name = livestock(turtle)
-  elif name == "ballast":
-    name = ballast(turtle)
-  elif name == "rum":
-    name = rum(turtle)
-  elif name == "gold":
-    name = gold(turtle) 
+  x = 1
+  while x > 0:
+    if name == "quay":
+      name = quay(turtle)
+    elif name == "deck":
+      name = deck(turtle)
+    elif name == "foreCastle":
+      name = foreCastle(turtle)
+    elif name == "aftCastle":
+      name = aftCastle(turtle)
+    elif name == "gunDeck":
+      name = gunDeck(turtle)
+    elif name == "crew":
+      name = crew(turtle)
+    elif name == "gunPowder":
+      name = gunPowder(turtle)
+    elif name == "tweenDeck":
+      name = tweenDeck(turtle)
+    elif name == "bunk":
+      name = bunk(turtle)
+    elif name == "passengers":
+      name = passengers(turtle)
+    elif name == "hold":
+      name = hold(turtle)
+    elif name == "food":
+      name = food(turtle)
+    elif name == "livestock":
+      name = livestock(turtle)
+    elif name == "ballast":
+      name = ballast(turtle)
+    elif name == "rum":
+      name = rum(turtle)
+    elif name == "gold":
+      name = gold(turtle) 
   
