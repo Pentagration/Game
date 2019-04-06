@@ -113,20 +113,21 @@ def aftCastle():
   print "Captain and important passsengers stay."
   print "You are not important.\n"
   
-  print "(U)p: The gunPowder"
+  print "(D)OWN: The gunPowder"
   print "(L)EFT: The Deck"
 
 def foreCastle():
   print "You are in the Forecastle where the Baker, Tanner,"
   print "and Sail Maker work.\n"
   
-  print "(U)P: The Crew"
-  print "(R)ight: The Deck\n"
+  print "(D)OWN: The Crew"
+  print "(R)IGHT: The Deck\n"
 
 def gunDeck():
-  print "You are on the Gun deck, where the Talbot's cannons are secured."
-  print "(U)p: The tweenDeck"
-  print "(D)own: The Deck"
+  print "You are on the Gun deck, where the Talbot's cannons are secured.\n"
+  
+  print "(D)OWN: The Tween Deck"
+  print "(U)P: Deck"
   print "(L)eft: The Crew"
   print "(R)ight: The Gun Powder"
 
@@ -140,35 +141,35 @@ def setRoom(name):
   if name=="quay":
     return {"room":"quay",'x':115,'y':250,'call':quay(),'u':"deck"}
   elif name=="deck":
-    return {"room":"deck",'x':175,'y':250,'call':deck(),'d':"quay",'r':"aftCastle",'l':"foreCastle"}
+    return {"room":"deck",'x':175,'y':250,'call':deck(),'d':"gunDeck",'r':"aftCastle",'l':"foreCastle"}
   elif name == "foreCastle":
-    return {"room":"foreCastle",'x':175,'y':190,'call':foreCastle(),'u':"crew",'r':"deck"}
+    return {"room":"foreCastle",'x':175,'y':190,'call':foreCastle(),'d':"crew",'r':"deck"}
   elif name == "aftCastle":
-    return {"room":"aftCastle",'x':175,'y':310,'call':aftCastle(),'u':"gunPowder",'l':"deck"}
+    return {"room":"aftCastle",'x':175,'y':310,'call':aftCastle(),'d':"gunPowder",'l':"deck"}
   elif name == "gunDeck":
-    return {"room":"gunDeck",'x':235,'y':250,'call':gunDeck(),'u':"tweenDeck",'d':"deck",'l':"crew",'r':"gunPowder"}
+    return {"room":"gunDeck",'x':235,'y':250,'call':gunDeck(),'d':"tweenDeck",'u':"deck",'l':"crew",'r':"gunPowder"}
   elif name == "crew":
-    return {"room":"crew",'x':235,'y':190,'call':crew(),'u':"bunk",'d':"foreCastle",'r':"gunDeck"}
+    return {"room":"crew",'x':235,'y':190,'call':crew(),'d':"bunk",'u':"foreCastle",'r':"gunDeck"}
   elif name == "gunPowder":
-    return {"room":"gunPowder",'x':235,'y':310,'call':gunPowder(),'u':"passengers",'d':"aftCastle",'l':"gunDeck"}
+    return {"room":"gunPowder",'x':235,'y':310,'call':gunPowder(),'d':"passengers",'u':"aftCastle",'l':"gunDeck"}
   elif name == "tweenDeck":
-    return {"room":"tweenDeck",'x':295,'y':250,'call':tweenDeck(),'u':"hold",'d':"gunDeck",'l':"bunk",'r':"passengers"}
+    return {"room":"tweenDeck",'x':295,'y':250,'call':tweenDeck(),'d':"hold",'u':"gunDeck",'l':"bunk",'r':"passengers"}
   elif name == "bunk":
-    return {"room":"bunk",'x':295,'y':190,'call':bunk(),'u':"food",'d':"crew",'r':"tweenDeck"}
+    return {"room":"bunk",'x':295,'y':190,'call':bunk(),'d':"food",'u':"crew",'r':"tweenDeck"}
   elif name == "passengers":
-    return {"room":"passengers",'x':295,'y':310,'call':passengers(),'u':"livestock",'d':"gunPowder",'l':"tweenDeck"}
+    return {"room":"passengers",'x':295,'y':310,'call':passengers(),'d':"livestock",'u':"gunPowder",'l':"tweenDeck"}
   elif name == "hold":
-    return {"room":"hold",'x':355,'y':250,'call':hold(),'u':"ballast",'d':"tweenDeck",'l':"food",'r':"livestock"}
+    return {"room":"hold",'x':355,'y':250,'call':hold(),'d':"ballast",'u':"tweenDeck",'l':"food",'r':"livestock"}
   elif name == "food":
-    return {"room":"food",'x':355,'y':190,'call':food(),'u':"rum",'d':"bunk",'r':"hold"}
+    return {"room":"food",'x':355,'y':190,'call':food(),'d':"rum",'u':"bunk",'r':"hold"}
   elif name == "livestock":
-    return {"room":"livestock",'x':355,'y':310,'call':livestock(),'u':"gold",'d':"passengers",'l':"hold"}
+    return {"room":"livestock",'x':355,'y':310,'call':livestock(),'d':"gold",'u':"passengers",'l':"hold"}
   elif name == "ballast":
-    return {"room":"ballast",'x':415,'y':250,'call':ballast(),'d':"hold",'l':"rum",'r':"gold"}
+    return {"room":"ballast",'x':415,'y':250,'call':ballast(),'u':"hold",'l':"rum",'r':"gold"}
   elif name == "rum":
-    return {"room":"rum",'x':415,'y':190,'call':rum(),'r':"ballast",'d':"food"}
+    return {"room":"rum",'x':415,'y':190,'call':rum(),'r':"ballast",'u':"food"}
   elif name == "gold":
-    return {"room":"gold",'x':415,'y':310,'call':gold(),'l':"ballast",'d':"livestock"}
+    return {"room":"gold",'x':415,'y':310,'call':gold(),'l':"ballast",'u':"livestock"}
 
 
 def playGame():
