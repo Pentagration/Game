@@ -118,7 +118,7 @@ def deck():
 
   print "(R)IGHT: Aft castle"
   print "(L)EFT: Forecastle"
-  print "(D)OWN: Gun Deck"
+  print "(D)OWN: Gun Deck\n"
 #end deck
 
 def aftCastle():
@@ -127,7 +127,7 @@ def aftCastle():
   print "You are not important.\n"
 
   print "(D)OWN: The gunPowder"
-  print "(L)EFT: The Deck"
+  print "(L)EFT: The Deck\n"
 #end aftCastle
 
 def foreCastle():
@@ -291,13 +291,13 @@ def secret():
   print "anything you're not supposed to have."
 
   print "(R)IGHT: Food"
-  print "(S)TASH: Hide your stolen goods."
+  print "(S)TASH: Hide your stolen goods.\n"
 
 def secretStash(items, stash):
   print "Your stolen goods are now stashed away from prying eyes."
   for x in items:
     stash.append(x)
-  print "(R)IGHT: Food"
+  print "(R)IGHT: Food\n"
 
 #######################################################################
 #############              END ROOMS              #####################
