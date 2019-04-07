@@ -118,7 +118,8 @@ def foreCastle():
 #end foreCastle
 
 def gunDeck():
-  print "You are on the Gun deck, where the Talbot's cannons are secured.\n"
+  print "You are on the Gun deck, where the Talbot's cannons are secured"
+  print "and the crew is housed.\n"
 
   print "(D)OWN: The Tween Deck"
   print "(U)P: Deck"
@@ -128,7 +129,8 @@ def gunDeck():
 
 def crew():
   print "You are in the crew area.  What are you doing here? Passengers aren't"
-  print "supposed to be on the Gun Deck.\n"
+  print "supposed to be on the Gun Deck.  If you hang around too long one of"
+  print "crew may come along, pick up a cutlass from the rack, and drive you off!\n"
 
   print "(D)OWN: Your bunk"
   print "(U)P: Fore Castle"
@@ -145,8 +147,8 @@ def gunPowder():
 #end gunPowder
 
 def tweenDeck():
-  print "The Tween Deck is the passenger area. This is where your"
-  print "fellow passengers and you bunk are.\n"
+  print "The Tween Deck is the passenger area. This is where you"
+  print "and your fellow passengers will bunk and store your chests.\n"
 
   print "(D)OWN: Hold"
   print "(U)P: Gun Deck"
@@ -155,7 +157,11 @@ def tweenDeck():
 #end tweenDeck
 
 def bunk():
-  print "Bunk\n"
+  print "The Bunk area is where you'll find your designated space."
+  print "Passengers are allocated area marked off in chalk."
+  print "You see outlines and numbers and look to find yours."
+  print "This is where you can tie down your chest, making sure it"
+  print "will not go flying in a storm.  No one wants to be hit with that.\n"
 
   print "(D)OWN: Food"
   print "(U)P: Crew"
@@ -163,7 +169,10 @@ def bunk():
 #end bunk
 
 def passengers():
-  print "Passengers\n"
+  print "In the Passengers area you see candles and hammocks"
+  print "lining the walls and hanging from the ceiling.  They"
+  print "are stacked 2, 3, or 4 high in some places.  You wonder"
+  print "if you'll get much sleep with close quarters and the smell.\n"
 
   print "(D)OWN: Livestock"
   print "(U)P: Gun Powder"
@@ -171,7 +180,10 @@ def passengers():
 #end passengers
 
 def hold():
-  print "Hold\n"
+  print "The Hold is the level where food and livestock are kept."
+  print "You'll also find extra sails and lines as well as plenty of wood."
+  print "One of the most important parts in the Hold is the firebox."
+  print "This is where the cook builds the fires to cook food in the galley.\n"
 
   print "(D)OWN: Ballast"
   print "(U)P: Tween Deck"
@@ -180,7 +192,9 @@ def hold():
 #end hold
 
 def food():
-  print "Food\n"
+  print "The Food room is one that has all the water, wine, biscuts,"
+  print "salted meat, etc that the crew and passegers will need for the trip."
+  print "You see barrels and kegs stacked and labelled neatly.\n"
 
   print "(D)OWN: Rum"
   print "(U)P: Bunk"
@@ -188,7 +202,10 @@ def food():
 #end food
 
 def livestock():
-  print "Livestock\n"
+  print "Livestock are important because they provide food for the trip and"
+  print "transportation upon arriving.  You see stalls and cages for: cows,"
+  print "chickens, horses, goats, pigs, and rabbits.  Next to the stalls you"
+  print "see food, hay and water for the animals.\n"
 
   print "(D)OWN: Gold"
   print "(U)P: Passengers"
@@ -196,7 +213,8 @@ def livestock():
 #end livestock
 
 def ballast():
-  print "Ballast\n"
+  print "The Ballast is the lowest level of the Talbot.  Here you find"
+  print "the very important crew motivators - rum and treasure!\n"
 
   print "(U)P: Hold"
   print "(L)EFT: Rum"
@@ -204,14 +222,21 @@ def ballast():
 #end ballast
 
 def rum():
-  print "Rum\n"
+  print "A famous pirate once said, 'Where has all the rum gone?'  You"
+  print "can see the rum for this voyage is here.  It is partially held"
+  print "in larger casks, and partially in smaller, personal portion"
+  print "sizes that an industrius person might be able to make off with...\n"
 
   print "(U)P: Food"
   print "(R)IGHT: Ballast\n"
 #end rum
 
 def gold():
-  print "Gold\n"
+  print "Gold.  Gold!  GOLD!!  This may or may not be the prime mission"
+  print "of the Talbot, but the crew certainly doesn't mind a chance to"
+  print "get some and turn it into buillon and coins.  Amazingly, there"
+  print "are a few coins out and not in a locked chest.  This could"
+  print "definitely help someone starting a new life in a new world.\n"
 
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
