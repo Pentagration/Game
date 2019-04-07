@@ -66,7 +66,7 @@ def choice(valid):
 #Evaluate the players entry for validity
   choice = requestString("What choice do you make?: ")
   choice = choice[0]
-  
+
   #Evaluate that the choice is a valid choice
   while True:
     if choice in valid and choice!='x' and choice!='y':
@@ -248,6 +248,8 @@ def goldPickup():
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
 
+  goldAquired = True
+
 
 #######################################################################
 #############              END ROOMS              #####################
@@ -293,6 +295,9 @@ def setRoom(name):
 
 def playGame():
 #THE FUNCTION TO INITIATE THE GAME
+  goldAquired = False
+  cutlassAquired = False
+  rumAquired = False
 
   turtle = setup()                             #display the welcome, opening story, and help
   room = setRoom("quay")                       #set the starting location
