@@ -45,7 +45,8 @@ def drawBoat(turtle,boat):
 def help():
   print "At each point in the game you will be told which directions"
   print "you can go.  You MAY be able to go:"
-  print "(R)ight,(L)eft,(U)p,(D)own,(E)xit, or ask for (H)elp. \n"
+  print "(R)ight,(L)eft,(U)p,(D)own,(E)xit, or ask for (H)elp. "
+  print "Some rooms may have an object you can (P)ICK UP.\n"
 
 def intro():
   print "Let us pretend this is the year 1630, and that we have"
@@ -241,6 +242,11 @@ def gold():
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
 
+def goldPickup():
+  print "You picked up a gold coin."
+  print "(U)P: Livestock"
+  print "(L)EFT: Ballast\n"
+
 
 #######################################################################
 #############              END ROOMS              #####################
@@ -280,11 +286,13 @@ def setRoom(name):
   elif name == "rum":
     return {"room":rum(),'x':415,'y':190,'r':"ballast",'u':"food"}
   elif name == "gold":
-    return {"room":gold(),'x':415,'y':310,'l':"ballast",'u':"livestock"}
-
+    return {"room":gold(),'x':415,'y':310,'l':"ballast",'u':"livestock", 'p':"goldPickup"}
+  elif name == "goldPickup":
+    return {"room":goldPickup(),'x':415,'y':310,'l':"ballast",'u':"livestock"}
 
 def playGame():
 #THE FUNCTION TO INITIATE THE GAME
+
   turtle = setup()                             #display the welcome, opening story, and help
   room = setRoom("quay")                       #set the starting location
   result=''
