@@ -59,8 +59,6 @@ def intro():
 #END --- SETUP SECTION OF THE GAME
 ##################################################
 
-
-
 def choice(valid):
 #Evaluate the players entry for validity
   choice = requestString("What choice do you make?: ")
@@ -256,7 +254,6 @@ def setRoom(name):
     return {"room":"rum",'x':415,'y':190,'call':rum(),'r':"ballast",'u':"food"}
   elif name == "gold":
     return {"room":"gold",'x':415,'y':310,'call':gold(),'l':"ballast",'u':"livestock"}
-
 
 def playGame():
 #THE FUNCTION TO INITIATE THE GAME
