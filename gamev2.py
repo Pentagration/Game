@@ -59,7 +59,13 @@ def intro():
   print "fleet of eleven ships. We feel confident about this vessel because"
   print "she transported another group of Puritan planters to New England"
   print "last year in 1629. The Massachusetts Bay Company rented her for"
-  print "the expedition.\n"
+  print "the expedition."
+
+  print "You've paid half your fare upfront, the other half due on arrival."
+  print "The problem is, you don't have it.  You need to find something to"
+  print "give to the crew they may want, and something with which to defend"
+  print "yourself in case things go awry.  All must be done befor you land"
+  print "(your turns run out).\n"
 ##################################################
 #END --- SETUP SECTION OF THE GAME
 ##################################################
@@ -84,8 +90,7 @@ def choice(valid):
       choice = requestString("What choice do you make?: ")
 #end choice
 
-def drawSecret():
-  print "in drawSecret function"
+def drawSecret(turtle):
   # draws the secret room when it is entered
   # not part of setup because we don't want it by default
   penUp(turtle)
@@ -217,7 +222,10 @@ def hold():
 def food():
   print "The Food room is one that has all the water, wine, biscuts,"
   print "salted meat, etc that the crew and passegers will need for the trip."
-  print "You see barrels and kegs stacked and labelled neatly.\n"
+  print "You see barrels and kegs stacked and labelled neatly."
+  print "This area does appear to be a bit smaller that you'd expect."
+  print "All the stacked crates, barrels, and kegs would make a great cover"
+  print "for a hiding place...\n"
 
   print "(D)OWN: Rum"
   print "(U)P: Bunk"
@@ -277,14 +285,17 @@ def goldPickup():
   goldAcquired = True
 
 def secret():
-  drawSecret()
   print "You have found a secret hold behind some food storage!"
   print "This could be a great place to hide if needed, or to stow"
   print "anything you're not supposed to have."
 
   print "(R)IGHT: Food"
+  print "(S)TASH: Hide your stolen goods."
 
+def secretStash():
+  print "Your stolen goods are now stashed away from prying eyes."
 
+  print "(R)IGHT: Food"
 
 #######################################################################
 #############              END ROOMS              #####################
@@ -332,7 +343,9 @@ def setRoom(name):
   elif name == "goldPickup":
     return {"room":goldPickup(),'x':415,'y':310,'l':"ballast",'u':"livestock"}
   elif name == "secret":
-    return {"room":secret(),'x':295,'y':130,'r':"food"}
+    return {"room":secret(),'x':295,'y':130,'r':"food", 's':"secretStash"}
+  elif name == "secretStash":
+    return {"room":secretStash(),'x':295,'y':130,'r':"food"}
 
 def playGame():
 #THE FUNCTION TO INITIATE THE GAME
@@ -349,5 +362,7 @@ def playGame():
     room['room']                                #call room function
     result=choice(room)                         #stores a room name
     if result != 'e':
+      if result == "secret":
+        drawSecret(turtle)
       room=setRoom(result)                      #set room to room in the direction that player chooses
       moveTo(turtle,room['x'],room['y'])
