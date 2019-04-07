@@ -83,6 +83,16 @@ def choice(valid):
     else:
       choice = requestString("What choice do you make?: ")
 #end choice
+
+def drawSecret():
+  print "in drawSecret function"
+  # draws the secret room when it is entered
+  # not part of setup because we don't want it by default
+  penUp(turtle)
+  square(turtle,270,155)
+  penUp(turtle)
+#end drawSecret
+
 #######################################################################
 #############              ROOMS                  #####################
 #######################################################################
@@ -148,7 +158,7 @@ def crewPickup():
   print "(D)OWN: Your bunk"
   print "(U)P: Fore Castle"
   print "(R)IGHT: Gun Deck\n"
-  cutlassAquired = True
+  cutlassAcquired = True
 
 def gunPowder():
   print "DANGER. You are in the gun powder area, it's very unstable."
@@ -245,9 +255,9 @@ def rum():
 #end rum
 
 def rumPickup():
-    print "You picked up a cup or Rum! No man of the sea has ever turned down some rum."
+    print "You picked up a cup of Rum! No man of the sea has ever turned down some rum."
 
-    rumAquired = True
+    rumAcquired = True
 
 def gold():
   print "Gold.  Gold!  GOLD!!  This may or may not be the prime mission"
@@ -264,7 +274,16 @@ def goldPickup():
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
 
-  goldAquired = True
+  goldAcquired = True
+
+def secret():
+  drawSecret()
+  print "You have found a secret hold behind some food storage!"
+  print "This could be a great place to hide if needed, or to stow"
+  print "anything you're not supposed to have."
+
+  print "(R)IGHT: Food"
+
 
 
 #######################################################################
@@ -299,7 +318,7 @@ def setRoom(name):
   elif name == "hold":
     return {"room":hold(),'x':355,'y':250,'d':"ballast",'u':"tweenDeck",'l':"food",'r':"livestock"}
   elif name == "food":
-    return {"room":food(),'x':355,'y':190,'d':"rum",'u':"bunk",'r':"hold"}
+    return {"room":food(),'x':355,'y':190,'d':"rum",'u':"bunk",'r':"hold", 'l':"secret"}
   elif name == "livestock":
     return {"room":livestock(),'x':355,'y':310,'d':"gold",'u':"passengers",'l':"hold"}
   elif name == "ballast":
@@ -312,14 +331,16 @@ def setRoom(name):
     return {"room":gold(),'x':415,'y':310,'l':"ballast",'u':"livestock", 'p':"goldPickup"}
   elif name == "goldPickup":
     return {"room":goldPickup(),'x':415,'y':310,'l':"ballast",'u':"livestock"}
+  elif name == "secret":
+    return {"room":secret(),'x':295,'y':130,'r':"food"}
 
 def playGame():
 #THE FUNCTION TO INITIATE THE GAME
-  goldAquired = False
-  cutlassAquired = False
-  rumAquired = False
+  goldAcquired = False                         #do you have the gold coin
+  cutlassAcquired = False                      #do you have the cutlass
+  rumAcquired = False                          #do you have the rum
   var = 100
-  turnCount = 20
+  turnCount = 20                               #number of turns for game
   turtle = setup()                             #display the welcome, opening story, and help
   room = setRoom("quay")                       #set the starting location
   result=''
