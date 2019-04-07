@@ -158,12 +158,13 @@ def crew():
   print "(R)IGHT: Gun Deck\n"
 #end crew
 
-def crewPickup():
+def crewPickup(items):
   print "You picked up a cutlass! It's an intimidating weapon indeed."
   print "(D)OWN: Your bunk"
   print "(U)P: Fore Castle"
   print "(R)IGHT: Gun Deck\n"
-  cutlassAcquired = True
+
+  items.append("cutlass")
 
 def gunPowder():
   print "DANGER. You are in the gun powder area, it's very unstable."
@@ -262,10 +263,10 @@ def rum():
   print "(R)IGHT: Ballast\n"
 #end rum
 
-def rumPickup():
-    print "You picked up a cup of Rum! No man of the sea has ever turned down some rum."
+def rumPickup(items):
+  print "You picked up a cup of Rum! No man of the sea has ever turned down some rum."
 
-    rumAcquired = True
+  items.append("rumcup")
 
 def gold():
   print "Gold.  Gold!  GOLD!!  This may or may not be the prime mission"
@@ -277,12 +278,12 @@ def gold():
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
 
-def goldPickup():
+def goldPickup(items):
   print "You picked up a gold coin. One item that everyone enjoys..."
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
 
-  goldAcquired = True
+  items.append("goldCoin")
 
 def secret():
   print "You have found a secret hold behind some food storage!"
@@ -292,16 +293,17 @@ def secret():
   print "(R)IGHT: Food"
   print "(S)TASH: Hide your stolen goods."
 
-def secretStash():
+def secretStash(items, stash):
   print "Your stolen goods are now stashed away from prying eyes."
-
+  for x in items:
+    stash.append(x)
   print "(R)IGHT: Food"
 
 #######################################################################
 #############              END ROOMS              #####################
 #######################################################################
 #
-def setRoom(name):
+def setRoom(name,items=None,stash=None):
   "'This function maps values to room information. Room name is mapped to room. x and y are mapped to coordinates.'"
   "'(u)p (d)own (l)eft (r)ight are mapped to other rooms'"
   if name=="quay":
@@ -317,7 +319,7 @@ def setRoom(name):
   elif name == "crew":
     return {"room":crew(),'x':235,'y':190,'d':"bunk",'u':"foreCastle",'r':"gunDeck",'p':"crewPickup"}
   elif name == "crewPickup":
-    return {"room":crewPickup(),'x':235,'y':190,'d':"bunk",'u':"foreCastle",'r':"gunDeck"}
+    return {"room":crewPickup(items),'x':235,'y':190,'d':"bunk",'u':"foreCastle",'r':"gunDeck"}
   elif name == "gunPowder":
     return {"room":gunPowder(),'x':235,'y':310,'d':"passengers",'u':"aftCastle",'l':"gunDeck"}
   elif name == "tweenDeck":
@@ -337,32 +339,46 @@ def setRoom(name):
   elif name == "rum":
     return {"room":rum(),'x':415,'y':190,'r':"ballast",'u':"food", 'p':"rumPickup"}
   elif name == "rumPickup":
-    return {"room":rumPickup(),'x':415,'y':190,'r':"ballast",'u':"food"}
+    return {"room":rumPickup(items),'x':415,'y':190,'r':"ballast",'u':"food"}
   elif name == "gold":
     return {"room":gold(),'x':415,'y':310,'l':"ballast",'u':"livestock", 'p':"goldPickup"}
   elif name == "goldPickup":
-    return {"room":goldPickup(),'x':415,'y':310,'l':"ballast",'u':"livestock"}
+    return {"room":goldPickup(items),'x':415,'y':310,'l':"ballast",'u':"livestock"}
   elif name == "secret":
     return {"room":secret(),'x':295,'y':130,'r':"food", 's':"secretStash"}
   elif name == "secretStash":
-    return {"room":secretStash(),'x':295,'y':130,'r':"food"}
+    return {"room":secretStash(items, stash),'x':295,'y':130,'r':"food"}
+
+def checkGame(turnCount,stash):
+# checks win/lose scenario based on turns and items picked up
+    if "goldCoin" in stash and "rumcup" in stash and "cutlass" in stash and turnCount > 0:
+      print "You win"
+      return 2 # win scenario
+    if turnCount>0:
+      return 1 #1 is continue scenaio,
+    else:
+      print "You lose"
+      return 3 # 3 is lose
 
 def playGame():
 #THE FUNCTION TO INITIATE THE GAME
-  goldAcquired = False                         #do you have the gold coin
-  cutlassAcquired = False                      #do you have the cutlass
-  rumAcquired = False                          #do you have the rum
-  var = 100
-  turnCount = 20                               #number of turns for game
+  items=[]                          #do you have the rum
+  stash=[]
+  pickupRooms=("crewPickup","rumPickup","goldPickup")
+  turnCount = 30                               #number of turns for game
   turtle = setup()                             #display the welcome, opening story, and help
   room = setRoom("quay")                       #set the starting location
   result=''
-  while (result != 'e') and (turnCount > 0):
+  while (result != 'e') and checkGame(turnCount,stash)==1:
     turnCount -= 1
     room['room']                                #call room function
     result=choice(room)                         #stores a room name
     if result != 'e':
-      if result == "secret":
-        drawSecret(turtle)
-      room=setRoom(result)                      #set room to room in the direction that player chooses
+      drawSecret(turtle) if result=="secret" else None
+      if result in pickupRooms:
+        room=setRoom(result,items)
+      elif result=="secretStash":
+        setRoom(result,items,stash)
+      else:
+        room=setRoom(result)                      #set room to room in the direction that player chooses
       moveTo(turtle,room['x'],room['y'])
