@@ -94,7 +94,7 @@ def drawSecret(turtle):
   # draws the secret room when it is entered
   # not part of setup because we don't want it by default
   penUp(turtle)
-  square(turtle,270,155)
+  square(turtle,330,155)
   penUp(turtle)
 #end drawSecret
 
@@ -343,7 +343,7 @@ def setRoom(name):
   elif name == "goldPickup":
     return {"room":goldPickup(),'x':415,'y':310,'l':"ballast",'u':"livestock"}
   elif name == "secret":
-    return {"room":secret(),'x':295,'y':130,'r':"food", 's':"secretStash"}
+    return {"room":secret(),'x':355,'y':130,'r':"food", 's':"secretStash"}
   elif name == "secretStash":
     return {"room":secretStash(),'x':295,'y':130,'r':"food"}
 
