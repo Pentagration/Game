@@ -315,7 +315,6 @@ def playGame():
   cutlassAquired = False
   rumAquired = False
   var = 100
-  print var
   turnCount = 20
   turtle = setup()                             #display the welcome, opening story, and help
   room = setRoom("quay")                       #set the starting location
