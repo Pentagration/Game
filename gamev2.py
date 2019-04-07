@@ -140,7 +140,7 @@ def crew():
 #end crew
 
 def crewPickup():
-  print "You picked up a cutlass! Don't hurt yourself."
+  print "You picked up a cutlass! It's an intimidating weapon indeed."
   print "(D)OWN: Your bunk"
   print "(U)P: Fore Castle"
   print "(R)IGHT: Gun Deck\n"
@@ -241,7 +241,7 @@ def rum():
 #end rum
 
 def rumPickup():
-    print "You picked up a cup or Rum! Remember to drink responsibly."
+    print "You picked up a cup or Rum! No man of the sea has ever turned down some rum."
 
     rumAquired = True
 
@@ -256,7 +256,7 @@ def gold():
   print "(L)EFT: Ballast\n"
 
 def goldPickup():
-  print "You picked up a gold coin."
+  print "You picked up a gold coin. One item that everyone enjoys..."
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
 
@@ -314,6 +314,8 @@ def playGame():
   goldAquired = False
   cutlassAquired = False
   rumAquired = False
+  var = 100
+  print var
   turnCount = 20
   turtle = setup()                             #display the welcome, opening story, and help
   room = setRoom("quay")                       #set the starting location
