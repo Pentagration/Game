@@ -139,6 +139,13 @@ def crew():
   print "(R)IGHT: Gun Deck\n"
 #end crew
 
+def crewPickup():
+  print "You picked up a cutlass! Don't hurt yourself."
+  print "(D)OWN: Your bunk"
+  print "(U)P: Fore Castle"
+  print "(R)IGHT: Gun Deck\n"
+  cutlassAquired = True
+
 def gunPowder():
   print "DANGER. You are in the gun powder area, it's very unstable."
   print "Even the slightest spark could blow up the Talbot.\n"
@@ -233,6 +240,11 @@ def rum():
   print "(R)IGHT: Ballast\n"
 #end rum
 
+def rumPickup():
+    print "You picked up a cup or Rum! Remember to drink responsibly."
+
+    rumAquired = True
+
 def gold():
   print "Gold.  Gold!  GOLD!!  This may or may not be the prime mission"
   print "of the Talbot, but the crew certainly doesn't mind a chance to"
@@ -269,7 +281,9 @@ def setRoom(name):
   elif name == "gunDeck":
     return {"room":gunDeck(),'x':235,'y':250,'d':"tweenDeck",'u':"deck",'l':"crew",'r':"gunPowder"}
   elif name == "crew":
-    return {"room":crew(),'x':235,'y':190,'d':"bunk",'u':"foreCastle",'r':"gunDeck"}
+    return {"room":crew(),'x':235,'y':190,'d':"bunk",'u':"foreCastle",'r':"gunDeck",'p':"crewPickup"}
+  elif name == "crewPickup":
+    return {"room":crewPickup(),'x':235,'y':190,'d':"bunk",'u':"foreCastle",'r':"gunDeck"}
   elif name == "gunPowder":
     return {"room":gunPowder(),'x':235,'y':310,'d':"passengers",'u':"aftCastle",'l':"gunDeck"}
   elif name == "tweenDeck":
@@ -287,7 +301,9 @@ def setRoom(name):
   elif name == "ballast":
     return {"room":ballast(),'x':415,'y':250,'u':"hold",'l':"rum",'r':"gold"}
   elif name == "rum":
-    return {"room":rum(),'x':415,'y':190,'r':"ballast",'u':"food"}
+    return {"room":rum(),'x':415,'y':190,'r':"ballast",'u':"food", 'p':"rumPickup"}
+  elif name == "rumPickup":
+    return {"room":rumPickup(),'x':415,'y':190,'r':"ballast",'u':"food"}
   elif name == "gold":
     return {"room":gold(),'x':415,'y':310,'l':"ballast",'u':"livestock", 'p':"goldPickup"}
   elif name == "goldPickup":
@@ -298,11 +314,12 @@ def playGame():
   goldAquired = False
   cutlassAquired = False
   rumAquired = False
-
+  turnCount = 20
   turtle = setup()                             #display the welcome, opening story, and help
   room = setRoom("quay")                       #set the starting location
   result=''
-  while result != 'e':
+  while (result != 'e') and (turnCount > 0):
+    turnCount -= 1
     room['room']                                #call room function
     result=choice(room)                         #stores a room name
     if result != 'e':
