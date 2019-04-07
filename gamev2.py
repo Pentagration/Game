@@ -65,7 +65,7 @@ def choice(valid):
 #Evaluate the players entry for validity
   choice = requestString("What choice do you make?: ")
   choice = choice[0]
-  
+
   #Evaluate that the choice is a valid choice
   while True:
     if choice in valid and choice!='x' and choice!='y':
@@ -93,6 +93,17 @@ def quay():
 #end quay
 
 def deck():
+  print """You are on the main deck of the Talbot."
+   Welcome aboard!!!\n
+   (R)IGHT: Aft castle
+   (L)EFT: Forecastle
+   (D)OWN: Gun Deck"""
+
+#adam or colin can you let me know if you can see this
+#testing if i am doing the pull and push right -  sergio
+# btw triple quotes work here but not on my JES IDE try it out
+
+
   print "You are on the main deck of the Talbot."
   print "Welcome aboard!!!\n"
 
