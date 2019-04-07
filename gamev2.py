@@ -64,7 +64,8 @@ def intro():
 def choice(valid):
 #Evaluate the players entry for validity
   choice = requestString("What choice do you make?: ")
-
+  choice = choice[0]
+  
   #Evaluate that the choice is a valid choice
   while True:
     if choice in valid and choice!='x' and choice!='y':
