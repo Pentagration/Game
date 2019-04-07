@@ -12,9 +12,9 @@ def setup():
   turtle = makeTurtle(boat)
   drawBoat(turtle,boat)
   turnRight(turtle)
-  room=setRoom("quay")
+  #room=setRoom("quay")
   penUp(turtle)
-  moveTo(turtle,room['x'],room['y'])
+  moveTo(turtle,115,250)
   help()
   intro()
   return turtle
@@ -103,7 +103,7 @@ def drawSecret(turtle):
 #######################################################################
 def quay():
   print "You are standing on the quay at the base on the"
-  print "gangplank ready to board the talbot along with 120"
+  print "gangplank ready to board the Talbot along with 120"
   print "passengers and 30 crew.  150 people in all.\n"
   print "Are they all as pure as their puritan credentials?\n"
 
