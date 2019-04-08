@@ -3,6 +3,16 @@
 #CST205-40_SP19 Lab 12
 
 ##################################################
+#win/lose conditions
+##################################################
+#win condition involves picking up the items in the
+#pickup rooms (crew, gold, rum) and stashing them
+#in the secret room before turns run out
+#
+#lose condition is if the above is not met
+
+
+##################################################
 #SETUP SECTION OF THE GAME
 ##################################################
 def setup():
@@ -55,11 +65,11 @@ def help():
 def intro():
   print "Let us pretend this is the year 1630, and that we have"
   print "purchased a passage on the Talbot, one of the English galleons"
-  print "sailing from Southampton Harbour this spring with John Winthrop???s"
+  print "sailing from Southampton Harbour this spring with John Winthrop's"
   print "fleet of eleven ships. We feel confident about this vessel because"
   print "she transported another group of Puritan planters to New England"
   print "last year in 1629. The Massachusetts Bay Company rented her for"
-  print "the expedition."
+  print "the expedition.\n"
 
   print "You've paid half your fare upfront, the other half due on arrival."
   print "The problem is, you don't have it.  You need to find something to"
@@ -165,6 +175,7 @@ def crewPickup(items):
   print "(R)IGHT: Gun Deck\n"
 
   items.append("cutlass")
+#end crewPickup
 
 def gunPowder():
   print "DANGER. You are in the gun powder area, it's very unstable."
@@ -267,6 +278,7 @@ def rumPickup(items):
   print "You picked up a cup of Rum! No man of the sea has ever turned down some rum."
 
   items.append("rumcup")
+#end rumPickup
 
 def gold():
   print "Gold.  Gold!  GOLD!!  This may or may not be the prime mission"
@@ -277,6 +289,7 @@ def gold():
 
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
+#end gold
 
 def goldPickup(items):
   print "You picked up a gold coin. One item that everyone enjoys..."
@@ -284,6 +297,7 @@ def goldPickup(items):
   print "(L)EFT: Ballast\n"
 
   items.append("goldCoin")
+#end goldPickup
 
 def secret():
   print "You have found a secret hold behind some food storage!"
@@ -292,20 +306,22 @@ def secret():
 
   print "(R)IGHT: Food"
   print "(S)TASH: Hide your stolen goods.\n"
+#end secret
 
 def secretStash(items, stash):
   print "Your stolen goods are now stashed away from prying eyes."
   for x in items:
     stash.append(x)
   print "(R)IGHT: Food\n"
+#end secretStash
 
 #######################################################################
 #############              END ROOMS              #####################
 #######################################################################
 #
 def setRoom(name,items=None,stash=None):
-  "'This function maps values to room information. Room name is mapped to room. x and y are mapped to coordinates.'"
-  "'(u)p (d)own (l)eft (r)ight are mapped to other rooms'"
+  #This function maps values to room information. Room name is mapped to room. x and y are mapped to coordinates.
+  #(u)p (d)own (l)eft (r)ight are mapped to other rooms
   if name=="quay":
     return {"room":quay(),'x':115,'y':250,'u':"deck"}
   elif name=="deck":
@@ -353,17 +369,17 @@ def checkGame(turnCount,stash):
 # checks win/lose scenario based on turns and items picked up
     if "goldCoin" in stash and "rumcup" in stash and "cutlass" in stash and turnCount > 0:
       print "You win"
-      return 2 # win scenario
+      return 2                                 #2 is win scenario
     if turnCount>0:
-      return 1 #1 is continue scenaio,
+      return 1                                 #1 is continue scenaio
     else:
       print "You lose"
-      return 3 # 3 is lose
+      return 3                                 # 3 is lose
 
 def playGame():
 #THE FUNCTION TO INITIATE THE GAME
-  items=[]                          #do you have the rum
-  stash=[]
+  items=[]                                     #list of items picked up
+  stash=[]                                     #list of items stashed
   pickupRooms=("crewPickup","rumPickup","goldPickup")
   turnCount = 30                               #number of turns for game
   turtle = setup()                             #display the welcome, opening story, and help
@@ -374,11 +390,11 @@ def playGame():
     room['room']                                #call room function
     result=choice(room)                         #stores a room name
     if result != 'e':
-      drawSecret(turtle) if result=="secret" else None
+      drawSecret(turtle) if result=="secret" else None  #draws secret room on entering
       if result in pickupRooms:
-        room=setRoom(result,items)
+        room=setRoom(result,items)              #passes 2 args if in a room that has item to pickup
       elif result=="secretStash":
-        setRoom(result,items,stash)
+        setRoom(result,items,stash)             #passes 3 args to secret room
       else:
-        room=setRoom(result)                      #set room to room in the direction that player chooses
+        room=setRoom(result)                    #set room to room in the direction that player chooses
       moveTo(turtle,room['x'],room['y'])
