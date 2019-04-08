@@ -1,3 +1,17 @@
+#STUDENTS: Adam Houser, Colin Reed, Marcus Gonzalez, Sergio Quiroz, Jason Pettit
+#Team 5 - Pentagration
+#CST205-40_SP19 Lab 12
+
+##################################################
+#win/lose conditions
+##################################################
+#win condition involves picking up the items in the
+#pickup rooms (crew, gold, rum) and stashing them
+#in the secret room before turns run out
+#
+#lose condition is if the above is not met
+
+
 ##################################################
 #SETUP SECTION OF THE GAME
 ##################################################
@@ -8,9 +22,9 @@ def setup():
   turtle = makeTurtle(boat)
   drawBoat(turtle,boat)
   turnRight(turtle)
-  room=setRoom("quay")
+  #room=setRoom("quay")
   penUp(turtle)
-  moveTo(turtle,room['x'],room['y'])
+  moveTo(turtle,115,250)
   help()
   intro()
   return turtle
@@ -51,11 +65,17 @@ def help():
 def intro():
   print "Let us pretend this is the year 1630, and that we have"
   print "purchased a passage on the Talbot, one of the English galleons"
-  print "sailing from Southampton Harbour this spring with John Winthrop???s"
+  print "sailing from Southampton Harbour this spring with John Winthrop's"
   print "fleet of eleven ships. We feel confident about this vessel because"
   print "she transported another group of Puritan planters to New England"
   print "last year in 1629. The Massachusetts Bay Company rented her for"
   print "the expedition.\n"
+
+  print "You've paid half your fare upfront, the other half due on arrival."
+  print "The problem is, you don't have it.  You need to find something to"
+  print "give to the crew they may want, and something with which to defend"
+  print "yourself in case things go awry.  All must be done befor you land"
+  print "(your turns run out).\n"
 ##################################################
 #END --- SETUP SECTION OF THE GAME
 ##################################################
@@ -79,12 +99,21 @@ def choice(valid):
     else:
       choice = requestString("What choice do you make?: ")
 #end choice
+
+def drawSecret(turtle):
+  # draws the secret room when it is entered
+  # not part of setup because we don't want it by default
+  penUp(turtle)
+  square(turtle,330,155)
+  penUp(turtle)
+#end drawSecret
+
 #######################################################################
 #############              ROOMS                  #####################
 #######################################################################
 def quay():
   print "You are standing on the quay at the base on the"
-  print "gangplank ready to board the talbot along with 120"
+  print "gangplank ready to board the Talbot along with 120"
   print "passengers and 30 crew.  150 people in all.\n"
   print "Are they all as pure as their puritan credentials?\n"
 
@@ -110,7 +139,7 @@ def deck():
 
   print "(R)IGHT: Aft castle"
   print "(L)EFT: Forecastle"
-  print "(D)OWN: Gun Deck"
+  print "(D)OWN: Gun Deck\n"
 #end deck
 
 def aftCastle():
@@ -119,7 +148,7 @@ def aftCastle():
   print "You are not important.\n"
 
   print "(D)OWN: The gunPowder"
-  print "(L)EFT: The Deck"
+  print "(L)EFT: The Deck\n"
 #end aftCastle
 
 def foreCastle():
@@ -149,6 +178,15 @@ def crew():
   print "(U)P: Fore Castle"
   print "(R)IGHT: Gun Deck\n"
 #end crew
+
+def crewPickup(items):
+  print "You picked up a cutlass! It's an intimidating weapon indeed."
+  print "(D)OWN: Your bunk"
+  print "(U)P: Fore Castle"
+  print "(R)IGHT: Gun Deck\n"
+
+  items.append("cutlass")
+#end crewPickup
 
 def gunPowder():
   print "DANGER. You are in the gun powder area, it's very unstable."
@@ -207,7 +245,10 @@ def hold():
 def food():
   print "The Food room is one that has all the water, wine, biscuts,"
   print "salted meat, etc that the crew and passegers will need for the trip."
-  print "You see barrels and kegs stacked and labelled neatly.\n"
+  print "You see barrels and kegs stacked and labelled neatly."
+  print "This area does appear to be a bit smaller that you'd expect."
+  print "All the stacked crates, barrels, and kegs would make a great cover"
+  print "for a hiding place...\n"
 
   print "(D)OWN: Rum"
   print "(U)P: Bunk"
@@ -244,6 +285,12 @@ def rum():
   print "(R)IGHT: Ballast\n"
 #end rum
 
+def rumPickup(items):
+  print "You picked up a cup of Rum! No man of the sea has ever turned down some rum."
+
+  items.append("rumcup")
+#end rumPickup
+
 def gold():
   print "Gold.  Gold!  GOLD!!  This may or may not be the prime mission"
   print "of the Talbot, but the crew certainly doesn't mind a chance to"
@@ -253,20 +300,39 @@ def gold():
 
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
+#end gold
 
-def goldPickup():
-  print "You picked up a gold coin."
+def goldPickup(items):
+  print "You picked up a gold coin. One item that everyone enjoys..."
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
 
+  items.append("goldCoin")
+#end goldPickup
+
+def secret():
+  print "You have found a secret hold behind some food storage!"
+  print "This could be a great place to hide if needed, or to stow"
+  print "anything you're not supposed to have."
+
+  print "(R)IGHT: Food"
+  print "(S)TASH: Hide your stolen goods.\n"
+#end secret
+
+def secretStash(items, stash):
+  print "Your stolen goods are now stashed away from prying eyes."
+  for x in items:
+    stash.append(x)
+  print "(R)IGHT: Food\n"
+#end secretStash
 
 #######################################################################
 #############              END ROOMS              #####################
 #######################################################################
 #
-def setRoom(name):
-  "'This function maps values to room information. Room name is mapped to room. x and y are mapped to coordinates.'"
-  "'(u)p (d)own (l)eft (r)ight are mapped to other rooms'"
+def setRoom(name,items=None,stash=None):
+  #This function maps values to room information. Room name is mapped to room. x and y are mapped to coordinates.
+  #(u)p (d)own (l)eft (r)ight are mapped to other rooms
   if name=="quay":
     return {"room":quay(),'x':115,'y':250,'u':"deck"}
   elif name=="deck":
@@ -278,7 +344,9 @@ def setRoom(name):
   elif name == "gunDeck":
     return {"room":gunDeck(),'x':235,'y':250,'d':"tweenDeck",'u':"deck",'l':"crew",'r':"gunPowder"}
   elif name == "crew":
-    return {"room":crew(),'x':235,'y':190,'d':"bunk",'u':"foreCastle",'r':"gunDeck"}
+    return {"room":crew(),'x':235,'y':190,'d':"bunk",'u':"foreCastle",'r':"gunDeck",'p':"crewPickup"}
+  elif name == "crewPickup":
+    return {"room":crewPickup(items),'x':235,'y':190,'d':"bunk",'u':"foreCastle",'r':"gunDeck"}
   elif name == "gunPowder":
     return {"room":gunPowder(),'x':235,'y':310,'d':"passengers",'u':"aftCastle",'l':"gunDeck"}
   elif name == "tweenDeck":
@@ -290,27 +358,54 @@ def setRoom(name):
   elif name == "hold":
     return {"room":hold(),'x':355,'y':250,'d':"ballast",'u':"tweenDeck",'l':"food",'r':"livestock"}
   elif name == "food":
-    return {"room":food(),'x':355,'y':190,'d':"rum",'u':"bunk",'r':"hold"}
+    return {"room":food(),'x':355,'y':190,'d':"rum",'u':"bunk",'r':"hold", 'l':"secret"}
   elif name == "livestock":
     return {"room":livestock(),'x':355,'y':310,'d':"gold",'u':"passengers",'l':"hold"}
   elif name == "ballast":
     return {"room":ballast(),'x':415,'y':250,'u':"hold",'l':"rum",'r':"gold"}
   elif name == "rum":
-    return {"room":rum(),'x':415,'y':190,'r':"ballast",'u':"food"}
+    return {"room":rum(),'x':415,'y':190,'r':"ballast",'u':"food", 'p':"rumPickup"}
+  elif name == "rumPickup":
+    return {"room":rumPickup(items),'x':415,'y':190,'r':"ballast",'u':"food"}
   elif name == "gold":
     return {"room":gold(),'x':415,'y':310,'l':"ballast",'u':"livestock", 'p':"goldPickup"}
   elif name == "goldPickup":
-    return {"room":goldPickup(),'x':415,'y':310,'l':"ballast",'u':"livestock"}
+    return {"room":goldPickup(items),'x':415,'y':310,'l':"ballast",'u':"livestock"}
+  elif name == "secret":
+    return {"room":secret(),'x':355,'y':130,'r':"food", 's':"secretStash"}
+  elif name == "secretStash":
+    return {"room":secretStash(items, stash),'x':295,'y':130,'r':"food"}
+
+def checkGame(turnCount,stash):
+# checks win/lose scenario based on turns and items picked up
+    if "goldCoin" in stash and "rumcup" in stash and "cutlass" in stash and turnCount > 0:
+      print "You win"
+      return 2                                 #2 is win scenario
+    if turnCount>0:
+      return 1                                 #1 is continue scenaio
+    else:
+      print "You lose"
+      return 3                                 # 3 is lose
 
 def playGame():
 #THE FUNCTION TO INITIATE THE GAME
-
+  items=[]                                     #list of items picked up
+  stash=[]                                     #list of items stashed
+  pickupRooms=("crewPickup","rumPickup","goldPickup")
+  turnCount = 30                               #number of turns for game
   turtle = setup()                             #display the welcome, opening story, and help
   room = setRoom("quay")                       #set the starting location
   result=''
-  while result != 'e':
+  while (result != 'e') and checkGame(turnCount,stash)==1:
+    turnCount -= 1
     room['room']                                #call room function
     result=choice(room)                         #stores a room name
     if result != 'e':
-      room=setRoom(result)                      #set room to room in the direction that player chooses
+      drawSecret(turtle) if result=="secret" else None  #draws secret room on entering
+      if result in pickupRooms:
+        room=setRoom(result,items)              #passes 2 args if in a room that has item to pickup
+      elif result=="secretStash":
+        setRoom(result,items,stash)             #passes 3 args to secret room
+      else:
+        room=setRoom(result)                    #set room to room in the direction that player chooses
       moveTo(turtle,room['x'],room['y'])
