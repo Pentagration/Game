@@ -376,15 +376,15 @@ def setRoom(name,items=None,stash=None):
   elif name == "secretStash":
     return {"room":secretStash(items, stash),'x':295,'y':130,'r':"food"}
 
-def checkGame(turnCount,stash):
+def checkGame(turnCount,stash,name):
 # checks win/lose scenario based on turns and items picked up
     if "goldCoin" in stash and "rumcup" in stash and "cutlass" in stash and turnCount > 0:
-      print "You win"
+      print "You win "+name
       return 2                                 #2 is win scenario
     if turnCount>0:
       return 1                                 #1 is continue scenaio
     else:
-      print "You lose"
+      print "You lose "+name
       return 3                                 # 3 is lose
 
 def playGame():
@@ -394,9 +394,10 @@ def playGame():
   pickupRooms=("crewPickup","rumPickup","goldPickup")
   turnCount = 30                               #number of turns for game
   turtle = setup()                             #display the welcome, opening story, and help
+  name=requestString("Enter name")
   room = setRoom("quay")                       #set the starting location
   result=''
-  while (result != 'e') and checkGame(turnCount,stash)==1:
+  while (result != 'e') and checkGame(turnCount,stash,name)==1:
     turnCount -= 1
     room['room']                                #call room function
     result=choice(room)                         #stores a room name
