@@ -180,7 +180,7 @@ def crew():
 #end crew
 
 def crewPickup(items):
-  print "You picked up a cutlass! It's an intimidating weapon indeed."
+  showInformation("You picked up a cutlass! It's an intimidating weapon indeed.")
   print "(D)OWN: Your bunk"
   print "(U)P: Fore Castle"
   print "(R)IGHT: Gun Deck\n"
@@ -286,7 +286,7 @@ def rum():
 #end rum
 
 def rumPickup(items):
-  print "You picked up a cup of Rum! No man of the sea has ever turned down some rum."
+  showInformation("You picked up a cup of Rum! No man of the sea has ever turned down some rum.")
 
   items.append("rumcup")
 #end rumPickup
@@ -303,7 +303,7 @@ def gold():
 #end gold
 
 def goldPickup(items):
-  print "You picked up a gold coin. One item that everyone enjoys..."
+  showInformation("You picked up a gold coin. One item that everyone enjoys...")
   print "(U)P: Livestock"
   print "(L)EFT: Ballast\n"
 
@@ -379,12 +379,12 @@ def setRoom(name,items=None,stash=None):
 def checkGame(turnCount,stash,name):
 # checks win/lose scenario based on turns and items picked up
     if "goldCoin" in stash and "rumcup" in stash and "cutlass" in stash and turnCount > 0:
-      print "You win "+name
+      showInformation("You win "+name+"!") 
       return 2                                 #2 is win scenario
     if turnCount>0:
       return 1                                 #1 is continue scenaio
     else:
-      print "You lose "+name
+      showInformation("You lose +"name)
       return 3                                 # 3 is lose
 
 def playGame():
