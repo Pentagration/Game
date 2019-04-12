@@ -57,10 +57,10 @@ def drawBoat(turtle,boat):
 
 
 def help():
-  print "At each point in the game you will be told which directions"
-  print "you can go.  You MAY be able to go:"
-  print "(R)ight,(L)eft,(U)p,(D)own,(E)xit, or ask for (H)elp. "
-  print "Some rooms may have an object you can (P)ICK UP.\n"
+  showInformation("At each point in the game you will be told which directions\n\
+  you can go. You MAY be able to go:\
+  (R)ight,(L)eft,(U)p,(D)own,(E)xit, or ask for (H)elp.")
+  showInformation("Some rooms may have an object you can (P)ICK UP.")
 
 def intro():
   print "Let us pretend this is the year 1630, and that we have"
