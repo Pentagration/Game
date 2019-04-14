@@ -63,19 +63,20 @@ def help():
   print "Some rooms may have an object you can (P)ICK UP.\n"
 
 def intro():
-  print "Let us pretend this is the year 1630, and that we have"
-  print "purchased a passage on the Talbot, one of the English galleons"
-  print "sailing from Southampton Harbour this spring with John Winthrop's"
-  print "fleet of eleven ships. We feel confident about this vessel because"
-  print "she transported another group of Puritan planters to New England"
-  print "last year in 1629. The Massachusetts Bay Company rented her for"
-  print "the expedition.\n"
+  showInformation(
+  "Let us pretend this is the year 1630, and that we have"
+  "purchased a passage on the Talbot, one of the English galleons"
+  "sailing from Southampton Harbour this spring with John Winthrop's"
+  "fleet of eleven ships. We feel confident about this vessel because"
+  "she transported another group of Puritan planters to New England"
+  "last year in 1629. The Massachusetts Bay Company rented her for"
+  "the expedition.\n"
 
-  print "You've paid half your fare upfront, the other half due on arrival."
-  print "The problem is, you don't have it.  You need to find something to"
-  print "give to the crew they may want, and something with which to defend"
-  print "yourself in case things go awry.  All must be done befor you land"
-  print "(your turns run out).\n"
+  "You've paid half your fare upfront, the other half due on arrival."
+  "The problem is, you don't have it.  You need to find something to"
+  "give to the crew they may want, and something with which to defend"
+  "yourself in case things go awry.  All must be done befor you land"
+  "(your turns run out).\n")
 ##################################################
 #END --- SETUP SECTION OF THE GAME
 ##################################################
@@ -376,15 +377,15 @@ def setRoom(name,items=None,stash=None):
   elif name == "secretStash":
     return {"room":secretStash(items, stash),'x':295,'y':130,'r':"food"}
 
-def checkGame(turnCount,stash):
+def checkGame(turnCount,stash,name):
 # checks win/lose scenario based on turns and items picked up
     if "goldCoin" in stash and "rumcup" in stash and "cutlass" in stash and turnCount > 0:
-      print "You win"
+      print "You win " + name
       return 2                                 #2 is win scenario
     if turnCount>0:
       return 1                                 #1 is continue scenaio
     else:
-      print "You lose"
+      print "You lose " + name
       return 3                                 # 3 is lose
 
 def playGame():
@@ -396,7 +397,8 @@ def playGame():
   turtle = setup()                             #display the welcome, opening story, and help
   room = setRoom("quay")                       #set the starting location
   result=''
-  while (result != 'e') and checkGame(turnCount,stash)==1:
+  name = requestString("Please enter your name: ")
+  while (result != 'e') and checkGame(turnCount,stash,name)==1:
     turnCount -= 1
     room['room']                                #call room function
     result=choice(room)                         #stores a room name
