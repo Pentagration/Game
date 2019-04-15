@@ -127,10 +127,9 @@ def moveTurtle(turtle,room):
 #moveTurtle
        
 def gameBoard():
-  kitchen = "kitchen"
   new_pic = collage()
   new_pic = drawText(new_pic)
   turtle = drawLines(new_pic)
-  moveTurtle(turtle,kitchen)
+  #moveTurtle(turtle,room)
   
   
