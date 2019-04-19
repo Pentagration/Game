@@ -5,13 +5,13 @@ def collage():
   hallway = makePicture("2_hallway.jpg")
   lounge = makePicture("3_lounge.jpg")
   library = makePicture("4_library.jpg")
-  billard = makePicture("5_billard.jpg")
+  billiard = makePicture("5_billiard.jpg")
   dining = makePicture("6_dining.jpg")
   conservatory = makePicture("7_conservatory.jpg")
   ballroom = makePicture("8_ballroom.jpg")
   kitchen = makePicture("9_kitchen.jpg")
   
-  sourceFiles = [study,hallway,lounge,library,billard,dining,conservatory,ballroom,kitchen]
+  sourceFiles = [study,hallway,lounge,library,billiard,dining,conservatory,ballroom,kitchen]
   targetY = [0,0,0,200,200,200,400,400,400]
   targetX = [0,200,400,0,200,400,0,200,400]
   
@@ -35,7 +35,7 @@ def drawText(pic):
   "Hallway", 
   "Lounge", 
   "Library", 
-  "Billard Room", 
+  "Billiard Room", 
   "Dining Room", 
   "Conservatory", 
   "Ball Room", 
@@ -114,7 +114,7 @@ def moveTurtle(turtle,room):
     moveTo(turtle,500,100)
   elif room == "library":
     moveTo(turtle,100,300)
-  elif room == "billard":
+  elif room == "billiard":
     moveTo(turtle,300,300)
   elif room == "dining":
     moveTo(turtle,500,300)
