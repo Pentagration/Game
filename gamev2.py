@@ -185,6 +185,8 @@ def characters():
       - has blonde hair"""
 
 def intro():
+  sound=makeSound("scream.wav")
+  play(sound)
   print """A classic game of 'Who Done It?' starts now!
   There has been a murder and only you can crack the case.
   You have 4 suspects, and know the following about them:\n"""
