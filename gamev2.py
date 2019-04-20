@@ -1,6 +1,6 @@
-#STUDENTS: Adam Houser, Colin Reed, Marcus Gonzalez, Sergio Quiroz, Jason Pettit
+#STUDENTS: Sergio Quiroz, Jason Pettit
 #Team 5 - Pentagration
-#CST205-40_SP19 Lab 12
+#CST205-40_SP19 Lab 13 Part 2
 
 ##################################################
 #win/lose conditions
