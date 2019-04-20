@@ -182,8 +182,7 @@ def characters():
 #end characters
 
 def intro():
-  sound=makeSound("scream.wav")
-  play(sound)
+  play(makeSound("scream.wav"))
   print """A classic game of 'Who Done It?' starts now!
   There has been a murder and only you can crack the case.
   You have 4 suspects, and know the following about them:\n"""
@@ -384,8 +383,10 @@ def guess(villian):
     guess = guess.lower()
 
     if guess == villian:
+        play(makeSound("win.wav"))
         showInformation("Great job, you won!")
     else:
+        play(makeSound("lose.wav"))
         showInformation("You guessed " + guess + ".  The killer was the " + villian + "!")
         showInformation("You lose.  The killer got away!")
 #end guess
