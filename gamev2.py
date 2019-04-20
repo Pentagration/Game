@@ -1,6 +1,6 @@
 #STUDENTS: Adam Houser, Colin Reed, Marcus Gonzalez, Sergio Quiroz, Jason Pettit
 #Team 5 - Pentagration
-#CST205-40_SP19 Lab 12
+#CST205-40_SP19 Final Project - Clue!
 
 import random
 
@@ -16,6 +16,7 @@ import random
 
 ##################################################
 #SETUP SECTION OF THE GAME
+#IMAGE MANIPULATION TO CREATE GAME BOARD
 ##################################################
 def collage():
 #makes a 3 x 3 collage for the game board
@@ -44,9 +45,10 @@ def collage():
         setColor(getPixel(new_pic,x+targetX[img],y+targetY[img]),rgb_color)
 
   return new_pic
-#collage
+#end collage
 
 def drawText(pic):
+#overlay a title on the gameboard for each room
   new_pic = pic
   myStyle = makeStyle(sansSerif,bold,20)
 
@@ -79,6 +81,8 @@ def drawText(pic):
     x += 200
 
   return new_pic
+#end drawText
+
 
 def drawLines(pic):
 #draws the lines on the game board and creates
@@ -143,16 +147,7 @@ def moveTurtle(turtle,room):
     moveTo(turtle,300,500)
   elif room == "kitchen":
     moveTo(turtle,500,500)
-#moveTurtle
-
-def gameBoard():
-  new_pic = collage()
-  new_pic = drawText(new_pic)
-  turtle = drawLines(new_pic)
-  #moveTurtle(turtle,room)
-
-#end setup section
-
+#end moveTurtle
 
 def help():
   showInformation("At each point in the game you will be told which directions\n\
@@ -161,6 +156,7 @@ def help():
   showInformation("In each room you can (I)nspect to look for clues.\n\
   Use the (C) key to review the (C)haracters.")
   showInformation("At any point you may (G)uess if you think you know the answer.")
+#end help
 
 def characters():
   print """
@@ -183,6 +179,7 @@ def characters():
       - often wears green
       - likes dogs
       - has blonde hair"""
+#end characters
 
 def intro():
   sound=makeSound("scream.wav")
@@ -197,11 +194,11 @@ def intro():
   print """
   Search the rooms, find the clues, and discover the
   perpetrator before your turns run out!"""
+#end intro
+
 ##################################################
 #END --- SETUP SECTION OF THE GAME
 ##################################################
-
-
 
 def choice(valid):
 #Evaluate the players entry for validity
@@ -300,7 +297,7 @@ def kitchen():
 #######################################################################
 #############              END ROOMS              #####################
 #######################################################################
-#
+
 #######################################################################
 #############             CHARACTERS              #####################
 #######################################################################
@@ -308,6 +305,7 @@ def pickCharacter():
   num = random.randint(0,3)
   chars = ["general", "actress", "politician", "scientist"]
   return chars[num]
+#end pickCharacter
 
 def setCharacter(name):
   if name=="general":
@@ -318,6 +316,8 @@ def setCharacter(name):
     return {"call":"politician","color":"black","like":"dogs","hair":"brown"}
   elif name=="scientist":
     return {"call":"scientist","color":"green","like":"dogs","hair":"blonde"}
+#end setCharacter    
+    
 #######################################################################
 #############           END CHARACTERSS           #####################
 #######################################################################
@@ -325,7 +325,9 @@ def setCharacter(name):
 #######################################################################
 #############              CLUES                  #####################
 #######################################################################
+
 def setClues():
+#randomly pict the 3 rooms that will have clues
     rooms = ["study", "hallway", "lounge", "library", "billiard", "dining", "conservatory", "ballroom", "kitchen"]
     clueRooms = []
     count = 0
@@ -335,19 +337,24 @@ def setClues():
             clueRooms.append(pick)
             count +=1
     return clueRooms
+#end setClues
 
 def checkRoom(room, cluerooms, color, likes, hair):
+#configure the clues that will be presented when the player inspects the room
     if room == cluerooms[0]:
         print "You come across some " + color + " cloth fibers that don't look like the victim's clothes."
     elif room == cluerooms[1]:
         print "Some " + likes + " hair is stuck to your pants, and the victim doesn't have pets."
     elif room == cluerooms[2]:
         print "The victim was a redhead and you stoop to pickup some " + hair + " hair."
+    else:
+        print "There are no clues in this room."
+#end checkRoom
 
 #######################################################################
 #############              END CLUES              #####################
 #######################################################################
-#
+
 def setRoom(name):
   #This function maps values to room information. Room name is mapped to room. x and y are mapped to coordinates.
   #(u)p (d)own (l)eft (r)ight are mapped to other rooms
@@ -369,7 +376,7 @@ def setRoom(name):
     return {"room":ballroom(),"call":"ballroom",'r':"kitchen",'u':"billiard",'l':"conservatory"}
   elif name == "kitchen":
     return {"room":kitchen(),"call":"kitchen",'u':"dining",'l':"ballroom"}
-
+#end setRoom
 
 def guess(villian):
 # guesses the killer for win/lose
@@ -381,34 +388,33 @@ def guess(villian):
     else:
         showInformation("You guessed " + guess + ".  The killer was the " + villian + "!")
         showInformation("You lose.  The killer got away!")
+#end guess
 
 def main():
 #THE FUNCTION TO INITIATE THE GAME
-  turnCount = 30                               #number of turns for game
+  turnCount = 30                                   #number of turns for game
   villian = setCharacter(pickCharacter())
   color = villian['color']
   likes = villian['like']
   hair = villian['hair']
   cluerooms = setClues()
-  print cluerooms
+  # print cluerooms                                #DEBUG: prints the rooms the clues are in
   new_pic = collage()
   new_pic = drawText(new_pic)
   turtle = drawLines(new_pic)
-  #gameBoard()                            #display the welcome, opening story, and help
   help()
   intro()
   room = setRoom("billiard")                       #set the starting location
   result=''
   while (result != 'e') and turnCount != 0:
     turnCount -= 1
-    room['room']                                #call room function
-    result=choice(room)                         #stores a room name
+    room['room']                                   #call room function
+    result=choice(room)                            #stores a room name
     if result == 'g':
         break
     elif result != 'i':
-        room=setRoom(result)                    #set room to room in the direction that player chooses
+        room=setRoom(result)                       #set room to room in the direction that player chooses
         moveTurtle(turtle,room['call'])
     elif result == 'i':
         checkRoom(room["call"], cluerooms, color, likes, hair)
-        #result=choice(room)
   guess(villian["call"])
