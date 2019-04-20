@@ -404,6 +404,8 @@ def main():
   new_pic = drawText(new_pic)
   turtle = drawLines(new_pic)
   help()
+  rain=makeSound("rain.wav")
+  play(rain)
   intro()
   room = setRoom("billiard")                       #set the starting location
   result=''
@@ -419,4 +421,5 @@ def main():
     elif result == 'i':
         checkRoom(room["call"], cluerooms, color, likes, hair)
   guess(villian["call"])
+  stopPlaying(rain)
 #end main
