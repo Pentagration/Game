@@ -62,7 +62,7 @@ def drawText(pic):
   "Ball Room",
   "Kitchen"]
 
-  x = 30
+  x = 30 #30 = the indent from 0 on each new row
   for room in rooms[:3]:
     y = 170
     addTextWithStyle(pic,int(x),int(y),room,myStyle,yellow)
@@ -91,7 +91,7 @@ def drawLines(pic):
   board = makeWorld(600,600)
   turtle = makeTurtle(board)
 
-  #add background to board
+  #move turtle to 0,0
   penUp(turtle)
   moveTo(turtle,0,0)
   drop(turtle,pic)
@@ -126,7 +126,7 @@ def drawLines(pic):
 #end drawLines
 
 def moveTurtle(turtle,room):
-#move the turtle to the middle of the room
+#move the turtle to the middle of a room
   room = room
 
   if room == "study":
@@ -208,7 +208,7 @@ def choice(valid):
 
   #Evaluate that the choice is a valid choice
   while True:
-    if choice in valid and choice!='x' and choice!='y':
+    if choice in valid:
       return valid[choice]                                      #returns a room name
     elif choice == 'e':
       return choice
@@ -340,7 +340,7 @@ def setClues():
 #end setClues
 
 def checkRoom(room, cluerooms, color, likes, hair):
-#configure the clues that will be presented when the player inspects the room
+#configure the clues that will be presented when the player inspects the rooms
     if room == cluerooms[0]:
         print "You come across some " + color + " cloth fibers that don't look like the victim's clothes."
     elif room == cluerooms[1]:
@@ -418,3 +418,4 @@ def main():
     elif result == 'i':
         checkRoom(room["call"], cluerooms, color, likes, hair)
   guess(villian["call"])
+#end main
