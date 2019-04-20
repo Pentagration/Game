@@ -403,11 +403,12 @@ def main():
     turnCount -= 1
     room['room']                                #call room function
     result=choice(room)                         #stores a room name
-    if result == 'i':
-        checkRoom(room["call"], cluerooms, color, likes, hair)
-        result=choice(room)
     if result == 'g':
         break
-    room=setRoom(result)                    #set room to room in the direction that player chooses
-    moveTurtle(turtle,room['call'])
+    elif result != 'i':
+        room=setRoom(result)                    #set room to room in the direction that player chooses
+        moveTurtle(turtle,room['call'])
+    elif result == 'i':
+        checkRoom(room["call"], cluerooms, color, likes, hair)
+        #result=choice(room)
   guess(villian["call"])
