@@ -160,22 +160,22 @@ def help():
 
 def characters():
   print """
-  The General:
+  The (G)eneral:
       - often wears green
       - likes cats
       - has brown hair
 
-  The Actress:
+  The (A)ctress:
       - often wears black
       - likes cats
       - has blonde hair
 
-  The Politician:
+  The (P)olitician:
       - often wears black
       - likes dogs
       - has brown hair
 
-  The Scientist:
+  The (S)cientist:
       - often wears green
       - likes dogs
       - has blonde hair"""
@@ -381,8 +381,9 @@ def guess(villian):
 # guesses the killer for win/lose
     guess = requestString("Who do you think the murderer is?")
     guess = guess.lower()
+    guess = guess[0]
 
-    if guess == villian:
+    if guess == villian[0]:
         play(makeSound("win.wav"))
         showInformation("Great job, you won!")
     else:
