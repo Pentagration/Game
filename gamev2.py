@@ -379,7 +379,7 @@ def setRoom(name):
 
 def guess(villian):
 # guesses the killer for win/lose
-    guess = requestString("Who do you think the murderer is?")
+    guess = requestString("Who do you think the murderer is? \n (G)eneral, (A)ctress, (P)olitician, (S)cientist")
     guess = guess.lower()
     guess = guess[0]
 
